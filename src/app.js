@@ -1,6 +1,7 @@
 // Vendor Modules
 import $ from 'jquery';
 import _ from 'underscore';
+import Song from './models/song';
 
 // CSS
 import './css/foundation.css';
@@ -31,7 +32,23 @@ const songData = [
     }
   ];
 
+  const mySong = new Song({
+    title: 'A wonderful song',
+    year: 2001,
+    artist: 'me'
+  })
+
+  console.log(mySong);
+
+const render = function render(songList) {
+
+} // render
 
 $(document).ready( () => {
+  const songTemplate = _.template($('#song-template').html());
 
+  songData.forEach((song) => {
+    let generatedHTML = $(songTemplate(song));
+    $('#song-list').append(generatedHTML);
+  })
 });
